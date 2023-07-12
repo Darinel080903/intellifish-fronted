@@ -1,10 +1,10 @@
-import AdminSideBar from "../containers/AdminSideBar/AdminSideBar";
+import Navbar from "../containers/Navbar/Navbar";
 import Card from "../containers/Card/Card";
 
 function Fishes() {
     return(
         <div>
-            <AdminSideBar/>
+            <Navbar/>
             <div  className="w-full h-1/2 bg-cyan-500">
             <div className="grid grid-cols-3 gap-4 p-4">
                 <Card
