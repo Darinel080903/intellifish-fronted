@@ -37,7 +37,7 @@ const AdminSideBar = () => {
                         <a href="#" className="text-gray-700 hover:text-gray-300">Fishes</a>
                     </li>
                     <li>
-                        <a href="#" className="text-gray-700 hover:text-gray-300">Statics</a>
+                        <a href="#" className="text-gray-700 hover:text-gray-300">Statistics</a>
                     </li>
                 </ul>
             </div>

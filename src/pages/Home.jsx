@@ -1,7 +1,6 @@
 import AdminSideBar from "../containers/AdminSideBar/AdminSideBar";
 import Card from "../containers/Card/Card"
 import Button from "../components/Button/Button";
-import ImageHeader from "../assets/img/image-header.jpg"
 
 function Home() {
     return(
