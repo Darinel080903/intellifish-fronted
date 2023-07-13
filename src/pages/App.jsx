@@ -5,6 +5,7 @@ import Home from './Home';
 import Register from './Register';
 import Fishes from "./Fishes";
 import Statistics from "./Statistics";
+import Fishbowl from "./Fishbowl";
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route path={routes.register} element={<Register />} />
         <Route path={routes.fishes} element={<Fishes />} />
         <Route path={routes.statistics} element={<Statistics />} />
+        <Route path={routes.fishbowl} element={<Fishbowl />} />
       </Routes>
     </BrowserRouter>
   )

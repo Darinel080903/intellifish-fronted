@@ -3,7 +3,8 @@ const routes = {
     login: '/login',
     register: '/register',
     fishes: '/fishes',
-    statistics: '/statistics'
+    statistics: '/statistics',
+    fishbowl: '/fishbowl'
     
 };
 

@@ -33,6 +33,12 @@ const Navbar = () => {
                 Fish
               </Link>
               <Link
+                to="/fishbowl"
+                className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Fishbowl
+              </Link>
+              <Link
                 to="/statistics"
                 className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
@@ -100,6 +106,12 @@ const Navbar = () => {
               className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
               Fish
+            </Link>
+            <Link
+              to="/fishbowl"
+              className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Fishbowl
             </Link>
             <Link
               to="/statistics"
