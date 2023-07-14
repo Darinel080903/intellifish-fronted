@@ -30,19 +30,25 @@ const Navbar = () => {
                 to="/fishes"
                 className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Fish
+                Peces
+              </Link>
+              <Link
+                to="/plants"
+                className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Plantas
               </Link>
               <Link
                 to="/fishbowl"
                 className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Fishbowl
+                Pecera
               </Link>
               <Link
                 to="/statistics"
                 className="text-black hover:bg-cyan-200 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Statistics
+                Estadisticas
               </Link>
             </div>
           </div>
@@ -105,19 +111,25 @@ const Navbar = () => {
               to="/fishes"
               className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Fish
+              Peces
+            </Link>
+            <Link
+              to="/plants"
+              className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Plantas
             </Link>
             <Link
               to="/fishbowl"
               className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Fishbowl
+              Pecera
             </Link>
             <Link
               to="/statistics"
               className="text-black hover:bg-cyan-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
             >
-              Statistics
+              Estadisticas
             </Link>
           </div>
         </div>

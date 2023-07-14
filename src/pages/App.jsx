@@ -6,6 +6,9 @@ import Register from './Register';
 import Fishes from "./Fishes";
 import Statistics from "./Statistics";
 import Fishbowl from "./Fishbowl";
+import AddPlants from "./AddPlants";
+import AddFish from "./AddFish";
+import Plants from "./Plants";
 
 
 
@@ -19,6 +22,10 @@ function App() {
         <Route path={routes.fishes} element={<Fishes />} />
         <Route path={routes.statistics} element={<Statistics />} />
         <Route path={routes.fishbowl} element={<Fishbowl />} />
+        <Route path={routes.addplants} element={<AddPlants />} />
+        <Route path={routes.addfish} element={<AddFish />} />
+        <Route path={routes.plants} element={<Plants />} />
+
       </Routes>
     </BrowserRouter>
   )

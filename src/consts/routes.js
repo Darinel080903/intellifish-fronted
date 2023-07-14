@@ -4,7 +4,10 @@ const routes = {
     register: '/register',
     fishes: '/fishes',
     statistics: '/statistics',
-    fishbowl: '/fishbowl'
+    fishbowl: '/fishbowl',
+    plants: '/plants',
+    addplants: '/addplants',
+    addfish: '/addfish'
     
 };
 

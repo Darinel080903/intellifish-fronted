@@ -5,7 +5,7 @@ function Fishes() {
     return(
         <div>
             <Navbar/>
-            <div className="bg-sky-600 min-h-screen">
+            <div className="bg-white min-h-screen">
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 justify-items-center">
                         <Card
