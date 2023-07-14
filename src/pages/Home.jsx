@@ -8,12 +8,17 @@ function Home() {
         <>
             <Navbar/>
             <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
-                <div className="w-full h-full bg-cyan-500 flex items-center justify-center">
-                    
-                    
-                            <h2 className="text-2xl font-bold mb-4 text-center">Estadisticas</h2>
-                            <BarChart></BarChart>
-                      
+                <div className="w-full h-full bg-cyan-500 flex flex-row">
+                    <div className="container mx-auto px-4 py-8 ">
+                            <div className="bg-white p-8 rounded-lg shadow-md h-[454px]">
+                                <h2 className="text-2xl font-bold mb-4 text-center">Estadisticas</h2>
+                                <BarChart/>
+                            </div> 
+                            <div className="bg-white p-8 rounded-lg shadow-md mt-[6%] h-[454px]">
+                                <h2 className="text-2xl font-bold  text-center">Estadisticas</h2>
+                                <LineChart/>
+                            </div> 
+                    </div> 
                 </div>
                 <div>
                     <div className="grid place-items-center">
