@@ -16,7 +16,8 @@ function AddFish() {
             especie: SpicesFish,
             imagen: urlImagen
         };
-        axiosAPIInstance.post(data)
+        const url = '/api/fish'; 
+        axiosAPIInstance.post(url,data)
             .then((response) => {
                 console.log('Respuesta del servidor:', response.data);
             
@@ -42,7 +43,7 @@ function AddFish() {
                             <label>Nombre del Pez</label>
                             <Input
                                 type='text'
-                                value={NameFish}
+                                defaultValue={NameFish}
                                 onChange={(e) => setNameFish(e.target.value)}
                             />
                         </div>
@@ -51,7 +52,7 @@ function AddFish() {
                             <label>Especie del Pez</label>
                             <Input
                                 type='text'
-                                value={SpicesFish}
+                                defaultValue={SpicesFish}
                                 onChange={(e) => setSpicesFish(e.target.value)}
                             />
                         </div>
@@ -60,7 +61,7 @@ function AddFish() {
                             <label>Url de la imagen</label>
                             <Input
                                 type='text'
-                                value={urlImagen}
+                                defaultValue={urlImagen}
                                 onChange={(e) => setUrlImagen(e.target.value)}
                             />
                         </div>

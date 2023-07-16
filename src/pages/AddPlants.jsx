@@ -1,9 +1,30 @@
 import Navbar from "../containers/Navbar/Navbar"
 import Input from "../components/Input/Input"
 import SecondaryButton from "../components/Button/SecondaryButton"
-import PlantImage from "../assets/img/AddPlant-image.jpg"
+import PlantImage from "../assets/img/AddPlant-image.jpg"  
+import React, { useState } from 'react';
+import { axiosAPIInstance } from "../api/axios";
 
 function AddPlants() {
+    const [SpicesPlant, setSpicesPlant] = useState('');
+    const [urlImagen, setUrlImagen] = useState('');
+
+    const handleAddPlant = () => {
+        const data = {
+            especie: SpicesPlant,
+            imagen: urlImagen
+        };
+        const url = '/api/plant'; 
+        axiosAPIInstance.post(url,data)
+            .then((response) => {
+                console.log('Respuesta del servidor:', response.data);
+            
+        })
+        .catch((error) => {
+            console.error('Error al enviar la solicitud:', error);
+            // Manejar errores aquí si es necesario
+        });
+    }
     return(
         <>
             <Navbar/>
@@ -18,16 +39,24 @@ function AddPlants() {
 
                         <div className='flex flex-col py-2'>
                             <label>Especie de la planta</label>
-                            <Input/>
+                            <Input
+                                type='text'
+                                defaultValue={SpicesPlant}
+                                onChange={(e) => setSpicesPlant(e.target.value)}
+                            />
                         </div>
 
                         <div className='flex flex-col py-2'>
                             <label>Url de la imagen</label>
-                            <Input/>
+                            <Input
+                                type='text'
+                                defaultValue={urlImagen}
+                                onChange={(e) => setUrlImagen(e.target.value)}
+                            />
                         </div>
 
                         <div className='flex flex-col py-2'>
-                            <SecondaryButton>Agregar Planta</SecondaryButton>
+                            <SecondaryButton onClick={handleAddPlant}>Agregar Planta</SecondaryButton>
                         </div>            
                     </form>
                 </div>
