@@ -24,21 +24,21 @@ function Home() {
                     <div className="grid place-items-center">
                         <div className="px-4 py-8">
                             <Card
-                                title="Título de la tarjeta"
-                                content="Contenido de ejemplo para la tarjeta"
+                                title="Agregar Peces"
+                                content=""
                                 imageUrl="https://images.unsplash.com/photo-1515474594679-6a13c25afb99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                             />
                         </div>
                         <div className="px-4 py-4">
                             <Card
-                                title="Título de la tarjeta"
-                                content="Contenido de ejemplo para la tarjeta"
-                                imageUrl="https://images.unsplash.com/photo-1515474594679-6a13c25afb99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                title="Agregar Plantas"
+                                content=""
+                                imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
                             />
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>        
         </>
     )
 }
