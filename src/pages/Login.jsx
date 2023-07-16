@@ -5,18 +5,18 @@ import TextError from '../components/TextError/TextError';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 
 
 function Login() {
-    const { setAccessToken, authState } = useAuth();
+    //const { setAccessToken, authState } = useAuth();
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (authState.accessToken) {
             navigate('/');
         }
-    }, []);
+    }, []);*/
     
     const navigate = useNavigate();
 
@@ -33,6 +33,19 @@ function Login() {
             .required('Contraseña requerida'),
     });
 
+    async function handleSubmit(values) {
+        /*const response = await signIn(values.email, values.password);
+        console.log(response);
+
+        if (response.status === 200){
+            //setAccessToken(response.data.token);
+            alert('Inicio de sesión exitoso');
+            navigate('/');
+            return;
+        }
+
+        alert('Usuario o contraseña incorrectos');*/
+    }
 
     return (
         <Formik 

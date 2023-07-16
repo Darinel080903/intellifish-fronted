@@ -2,7 +2,7 @@ import React from "react";
 
 const TextError =({children}) => {
     return(
-        <p classname='text-red-500 text-sm'>{children}</p>
+        <p className='text-red-500 text-sm'>{children}</p>
     )
 }
 
