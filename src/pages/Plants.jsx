@@ -1,8 +1,21 @@
 import Navbar from "../containers/Navbar/Navbar";
 import PlantCard from "../containers/Card/PlantCard";
+import { axiosAPIInstance } from "../api/axios";
+import React, { useEffect, useState } from 'react';
 
 
 function Plants(params) {
+    const [PlantData, setPlantData] = useState([]);
+        useEffect(() => {
+            axiosAPIInstance.get('/api/plant')
+            .then(response => {
+                setPlantData(response.data);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error al obtener peces:', error);
+            });
+    }, []);
     return(
         <div>
             <Navbar/>
