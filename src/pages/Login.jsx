@@ -68,7 +68,7 @@ function Login() {
 
                     <div className='flex flex-col justify-center'>
                         <form className='max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg' onSubmit={handleSubmit}>
-                            <h2 className='text-4xl font-bold text-center'>LOGIN</h2>
+                            <h2 className='text-4xl font-bold text-center'>Inicia Sesión</h2>
 
                             <div className='flex flex-col py-2'>
                                 <label>Email</label>
