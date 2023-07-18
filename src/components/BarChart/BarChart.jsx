@@ -1,9 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 import Chart from 'chart.js/auto';
+import { axiosAPIInstance } from '../../api/axios';
 
 const BarChart = () => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
+    const [chartData, setChartData] = useState({});
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axiosAPIInstance.get('/api/statistics');
+            // Procesa los datos recibidos de la API según el formato necesario para la gráfica
+            const data = processApiData(response.data);
+            setChartData(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
     useEffect(() => {
             const ctx = chartRef.current.getContext('2d');    

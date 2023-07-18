@@ -1,7 +1,6 @@
 import Navbar from "../containers/Navbar/Navbar";
 import BarChart from "../components/BarChart/BarChart";
 import LineChart from "../components/LineChart/LineChart";
-import SecondaryCard from "../containers/SecondaryCard/SecondaryCard";
 
 function Statistics() {
     return(

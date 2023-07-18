@@ -8,7 +8,7 @@ import { axiosAPIInstance } from "../api/axios";
 function AddPlants() {
     const [SpicesPlant, setSpicesPlant] = useState('');
     const [urlImagen, setUrlImagen] = useState('');
-
+    
     const handleAddPlant = () => {
         const data = {
             especie: SpicesPlant,
@@ -22,7 +22,6 @@ function AddPlants() {
         })
         .catch((error) => {
             console.error('Error al enviar la solicitud:', error);
-            // Manejar errores aquí si es necesario
         });
     }
     return(

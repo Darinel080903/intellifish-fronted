@@ -1,5 +1,5 @@
 const SecondaryButton = ({width, onClickHandler, type, children}) => {
-    return <button onClick={onClickHandler} type={type} className={`${width} bg-lime-700 text-white rounded-lg w-full my-5 py-2 shadow-lg hover:bg-cyan-500`}>
+    return <button onClick={onClickHandler} type={type} className={`${width} bg-lime-700 text-white rounded-lg w-full my-5 py-2 shadow-lg hover:bg-lime-800`}>
         {children}
     </button>;
 };
