@@ -37,10 +37,9 @@ function Login() {
 
     async function handleSubmit(values) {
         const response = await signIn(values.email, values.password);
-        console.log(response.data.data);
 
         if (response.status === 201){
-            setAccessToken(response.data.data.token);
+            setAccessToken(response.data.data["accessToken: "]);
             alert('Inicio de sesión exitoso');
             navigate('/');
             return;
@@ -76,7 +75,7 @@ function Login() {
                                 <label>Email</label>
                                 <Input type='email' name='email' placeholder='Correo electrónico' 
                                 value={values.email}
-                                handleChange={handleChange}
+                                onChange={handleChange}
                                 handleBlur={handleBlur} />
                                 {errors.email && touched.email && (
                                     <TextError>{errors.email}</TextError>
@@ -87,7 +86,7 @@ function Login() {
                                 <label>Password</label>
                                 <Input type='password'name='password' placeholder='Contraseña' 
                                 value={values.password}
-                                handleChange={handleChange}
+                                onChange={handleChange}
                                 handleBlur={handleBlur} />
                                 {errors.password && touched.password && (
                                     <TextError>{errors.password}</TextError>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import Logo from "../../assets/svg/intellifish_logo.svg"
+import useAuth from '../../hooks/UseAuth';
 
 
 const Navbar = () => {
@@ -9,6 +10,8 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+
+  const { logout } = useAuth();
 
   return (
     <nav className="bg-white border-b-2 border-gray-400">
@@ -53,6 +56,7 @@ const Navbar = () => {
               <Link
                 to="/login"
                 className="text-black hover:bg-red-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                onClick={logout}
               >
                 Cerrar sesión
               </Link>
