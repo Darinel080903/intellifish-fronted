@@ -70,10 +70,14 @@ function Register(params) {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Nombre</label>
-                                    <Input type='text' name='name' placeholder='Nombre' 
-                                    value={values.name}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur} />
+                                    <Input 
+                                        type='text' 
+                                        name='name' 
+                                        placeholder='Nombre' 
+                                        value={values.name}
+                                        onChange={handleChange}
+                                        handleBlur={handleBlur} 
+                                    />
                                     {errors.name && touched.name &&
                                         <TextError>{errors.name}</TextError>
                                     }
@@ -81,10 +85,14 @@ function Register(params) {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Apellido</label>
-                                    <Input type='text' name='lastName' placeholder='Apellido'
-                                    value={values.lastName}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur} />
+                                    <Input 
+                                        type='text' 
+                                        name='lastName' 
+                                        placeholder='Apellido'
+                                        value={values.lastName}
+                                        onChange={handleChange}
+                                        handleBlur={handleBlur} 
+                                    />
                                     {errors.lastName && touched.lastName &&
                                         <TextError>{errors.lastName}</TextError>
                                     }
@@ -92,10 +100,14 @@ function Register(params) {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Email</label>
-                                    <Input type='email' name='email' placeholder='Correo electrónico'
-                                    value={values.email}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur} />
+                                    <Input 
+                                        type='email' 
+                                        name='email' 
+                                        placeholder='Correo electrónico'
+                                        value={values.email}
+                                        onChange={handleChange}
+                                        handleBlur={handleBlur} 
+                                    />
                                     {errors.email && touched.email &&
                                         <TextError>{errors.email}</TextError>
                                     }
@@ -104,10 +116,14 @@ function Register(params) {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Contraseña</label>
-                                    <Input type='password' name='password' placeholder='Contraseña'
-                                    value={values.password}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur} />
+                                    <Input 
+                                        type='password' 
+                                        name='password' 
+                                        placeholder='Contraseña'
+                                        value={values.password}
+                                        onChange={handleChange}
+                                        handleBlur={handleBlur} 
+                                    />
                                     {errors.password && touched.password &&
                                         <TextError>{errors.password}</TextError>
                                     }
@@ -115,10 +131,14 @@ function Register(params) {
 
                                 <div className='flex flex-col py-2'>
                                     <label>Product Key/Código de Producto</label>
-                                    <Input type='password' name='code' placeholder='Código de producto'
-                                    value={values.code}
-                                    handleChange={handleChange}
-                                    handleBlur={handleBlur} />
+                                    <Input 
+                                        type='password' 
+                                        name='code' 
+                                        placeholder='Código de producto'
+                                        value={values.code}
+                                        onChange={handleChange}
+                                        handleBlur={handleBlur} 
+                                    />
                                     {errors.code && touched.code &&
                                         <TextError>{errors.code}</TextError>
                                     }
