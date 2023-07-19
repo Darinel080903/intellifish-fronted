@@ -6,15 +6,30 @@ import React, { useEffect, useState } from 'react';
 
 function Plants(params) {
     const [PlantData, setPlantData] = useState([]);
-        useEffect(() => {
-            axiosAPIInstance.get('/api/plant')
-            .then(response => {
-                setPlantData(response.data);
-                console.log(data)
-            })
-            .catch(error => {
-                console.error('Error al obtener peces:', error);
+    const plantInfo = async () => {
+        try {
+            const response = await axiosAPIInstance.get("/api/plant", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                },
             });
+            return response.data.data;
+        } catch (error) {
+            console.error("Error fetching plants data:", error);
+            return [];
+        }
+    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await plantInfo();
+            console.log("Plant data from API:", data);
+            if (Array.isArray(data)) { 
+                setPlantData(data);
+            } else {
+                console.warn("Plant data is not an array:", data);
+            }
+        };
+        fetchData();
     }, []);
     return(
         <div>
@@ -22,37 +37,14 @@ function Plants(params) {
             <div className="bg-white min-h-screen">
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 justify-items-center">
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
-                    
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
-                        <PlantCard
-                            title="Título de la tarjeta"
-                            content=""
-                            imageUrl="https://images.unsplash.com/photo-1589820744723-216e76967832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-                        />
+                        {PlantData.map((plants, index) => (
+                            <PlantCard
+                                key={index}
+                                title={plants.species}
+                                content={plants.spices}
+                                imageUrl={plants.imageUrl}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

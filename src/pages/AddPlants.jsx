@@ -14,15 +14,17 @@ function AddPlants() {
             especie: SpicesPlant,
             imagen: urlImagen
         };
-        const url = '/api/plant'; 
-        axiosAPIInstance.post(url,data)
+        axiosAPIInstance.post('/api/plant', data, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
             .then((response) => {
-                console.log('Respuesta del servidor:', response.data);
-            
-        })
-        .catch((error) => {
-            console.error('Error al enviar la solicitud:', error);
-        });
+              console.log('Respuesta del servidor:', response.data);
+            })
+            .catch((error) => {
+              console.error('Error al enviar la solicitud:', error);
+            });
     }
     return(
         <>
