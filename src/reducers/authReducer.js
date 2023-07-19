@@ -9,7 +9,6 @@ const authReducer = (state, action) => {
 
         const user = {
         email,
-        password,
         };
 
         return {
