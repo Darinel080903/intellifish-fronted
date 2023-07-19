@@ -4,8 +4,9 @@ function Input({
     id,
     name,
     value,
-    handleChange,
+    onChange,
     handleBlur,
+    required
 }) {
     return (
         <input
@@ -14,7 +15,8 @@ function Input({
             id={id}
             name={name}
             placeholder={placeholder}
-            onChange={handleChange}
+            onChange={onChange}
+            required={required}
             onBlur={handleBlur}
             className='rounded-lg mt-2 p-2  placeholder-gray-400 focus:outline-none focus:outline-principal-color'
         />

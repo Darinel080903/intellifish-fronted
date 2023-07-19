@@ -5,7 +5,37 @@ import Flujo from "../assets/svg/flujo.svg"
 import TemperaturaImage from "../assets/svg/temperatura-image.svg"
 import PlantImage from "../assets/svg/plant-image.svg"
 import FishImage from "../assets/svg/fish-image.svg"
+import { axiosAPIInstance } from "../api/axios";
+import React, { useEffect, useState } from 'react';
+
 function Fishbowl(params) {
+    const [phSensorData, setphSensorData] = useState([]);
+    const phAverage = async () => {
+        try {
+            const response = await axiosAPIInstance.get("/api/phSensor/average", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                },
+            });
+            return response.data.data || [];;
+        } catch (error) {
+            console.error("Error fetching ph data:", error);
+            return [];
+        }
+    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await phAverage();
+            console.log("ph data from API:", data);
+            console.log(data)
+            if (Array.isArray(data)) { 
+                setphSensorData(data);
+            } else {
+                console.warn("ph data is not an array:", data);
+            }
+        };
+        fetchData();
+    }, []);
     return(
         <>
             <Navbar/>
@@ -18,12 +48,14 @@ function Fishbowl(params) {
                             text='10°C'
                         >
                         </SecondaryCard>
-                        <SecondaryCard
-                            title='PH del Agua'
-                            image={Gota}
-                            text='7'
-                        >
-                        </SecondaryCard>
+                        {phSensorData.map((ph, index) => (
+                            <SecondaryCard
+                                key={index}
+                                title='Ph del agua'
+                                content={Gota}
+                                text={ph.data}
+                            />
+                        ))}
                         <SecondaryCard
                             title='Flujo del Agua'
                             image={Flujo}

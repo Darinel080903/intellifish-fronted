@@ -1,36 +1,55 @@
-import Navbar from "../containers/Navbar/Navbar"
-import Input from "../components/Input/Input"
-import Button from "../components/Button/Button"
-import AddFishImage from "../assets/img/AddFish-image.jpg"
+import Navbar from "../containers/Navbar/Navbar";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
+import AddFishImage from "../assets/img/AddFish-image.jpg";
 import React, { useState } from 'react';
 import { axiosAPIInstance } from "../api/axios";
 
 function AddFish() {
-    const [NameFish, setNameFish] = useState('');
-    const [SpicesFish, setSpicesFish] = useState('');
-    const [urlImagen, setUrlImagen] = useState('');
+    const [fishData, setFishData] = useState({
+        name: '',
+        spices: '',
+        imageUrl: '',
+    });
 
-    const handleAddFish = () => {
-        const data = {
-            nombre: NameFish,
-            especie: SpicesFish,
-            imagen: urlImagen
-        };
-        const url = '/api/fish'; 
-        axiosAPIInstance.post(url,data)
-            .then((response) => {
-                console.log('Respuesta del servidor:', response.data);
-            
-        })
-        .catch((error) => {
-            console.error('Error al enviar la solicitud:', error);
-            // Manejar errores aquí si es necesario
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFishData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const formData = new FormData();
+            formData.append('name', fishData.name);
+            formData.append('spices', fishData.spices);
+            formData.append('imageUrl', fishData.imageUrl);
+
+        await axiosAPIInstance.post('/api/fish', formData, {
+            headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Content-Type': 'application/json',
+            },
         });
-    }
-    return(
+
+        setIsSuccess(true);
+        setFishData({ name: '', spices: '', imageUrl: '' });
+        } catch (error) {
+            setIsError(true);
+            console.error('Error al enviar la solicitud POST:', error);
+        }
+    };
+
+    return (
         <>
-            <Navbar/>
-            <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">             
+            <Navbar />
+            <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
                 <div className="max-w-full">
                     <img className='w-full h-full object-cover' src={AddFishImage} alt="120" style={{ height: '720px' }} />
                 </div>
@@ -43,8 +62,10 @@ function AddFish() {
                             <label>Nombre del Pez</label>
                             <Input
                                 type='text'
-                                defaultValue={NameFish}
-                                onChange={(e) => setNameFish(e.target.value)}
+                                name="name"
+                                value={fishData.name}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
@@ -52,28 +73,42 @@ function AddFish() {
                             <label>Especie del Pez</label>
                             <Input
                                 type='text'
-                                defaultValue={SpicesFish}
-                                onChange={(e) => setSpicesFish(e.target.value)}
+                                name="spices"
+                                value={fishData.spices}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className='flex flex-col py-2'>
                             <label>Url de la imagen</label>
                             <Input
-                                type='text'
-                                defaultValue={urlImagen}
-                                onChange={(e) => setUrlImagen(e.target.value)}
+                                type="url"
+                                name="imageUrl"
+                                value={fishData.imageUrl}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className='flex flex-col py-2'>
-                            <Button onClick={handleAddFish}>Agregar Pez</Button>
-                        </div>            
+                            <Button onClickHandler={handleSubmit}>Agregar Pez</Button>
+                        </div>
                     </form>
+                    {isSuccess && (
+                        <div className="text-green-500 font-bold text-center mt-4">
+                            ¡Pez agregado exitosamente!
+                        </div>
+                    )}
+                    {isError && (
+                        <div className="text-red-500 font-bold text-center mt-4">
+                            ¡Ocurrió un error al agregar el pez!
+                        </div>
+                    )}
                 </div>
             </div>
-    </>
-    )
+        </>
+    );
 }
 
-export default AddFish
+export default AddFish;

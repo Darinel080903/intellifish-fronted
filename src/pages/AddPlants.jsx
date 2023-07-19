@@ -6,26 +6,43 @@ import React, { useState } from 'react';
 import { axiosAPIInstance } from "../api/axios";
 
 function AddPlants() {
-    const [SpicesPlant, setSpicesPlant] = useState('');
-    const [urlImagen, setUrlImagen] = useState('');
-    
-    const handleAddPlant = () => {
-        const data = {
-            especie: SpicesPlant,
-            imagen: urlImagen
-        };
-        axiosAPIInstance.post('/api/plant', data, {
+    const [PlanData, setPlantData] = useState({
+        species: '',
+        imageUrl: '',
+    });
+
+    const [isSuccess, setIsSuccess] = useState(false);
+    const [isError, setIsError] = useState(false);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setPlantData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const formData = new FormData();
+            formData.append('species', PlanData.species);
+            formData.append('imageUrl', PlanData.imageUrl);
+
+        await axiosAPIInstance.post('/api/plant', formData, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Content-Type': 'application/json',
             },
-          })
-            .then((response) => {
-              console.log('Respuesta del servidor:', response.data);
-            })
-            .catch((error) => {
-              console.error('Error al enviar la solicitud:', error);
-            });
-    }
+        });
+
+        setIsSuccess(true);
+        setplantData({ species: '', imageUrl: '' });
+        } catch (error) {
+            setIsError(true);
+            console.error('Error al enviar la solicitud POST:', error);
+        }
+    };
     return(
         <>
             <Navbar/>
@@ -42,24 +59,38 @@ function AddPlants() {
                             <label>Especie de la planta</label>
                             <Input
                                 type='text'
-                                defaultValue={SpicesPlant}
-                                onChange={(e) => setSpicesPlant(e.target.value)}
+                                name="name"
+                                value={PlanData.name}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className='flex flex-col py-2'>
                             <label>Url de la imagen</label>
                             <Input
-                                type='text'
-                                defaultValue={urlImagen}
-                                onChange={(e) => setUrlImagen(e.target.value)}
+                                type="url"
+                                name="imageUrl"
+                                value={PlanData.imageUrl}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
                         <div className='flex flex-col py-2'>
-                            <SecondaryButton onClick={handleAddPlant}>Agregar Planta</SecondaryButton>
+                            <SecondaryButton onClick={handleSubmit}>Agregar Planta</SecondaryButton>
                         </div>            
                     </form>
+                    {isSuccess && (
+                        <div className="text-green-500 font-bold text-center mt-4">
+                            ¡Planta agregada exitosamente!
+                        </div>
+                    )}
+                    {isError && (
+                        <div className="text-red-500 font-bold text-center mt-4">
+                            ¡Ocurrió un error al agregar la Planta!
+                        </div>
+                    )}
                 </div>
             </div>
         </>

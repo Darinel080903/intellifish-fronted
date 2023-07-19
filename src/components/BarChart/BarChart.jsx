@@ -13,12 +13,12 @@ const BarChart = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axiosAPIInstance.get('/api/statistics');
+            const response = await axiosAPIInstance.get('/api/watertemperaturesensor/meanDeviation');
             // Procesa los datos recibidos de la API según el formato necesario para la gráfica
             const data = processApiData(response.data);
             setChartData(data);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error('Error fetching water sensor data:', error);
         }
     };
 
