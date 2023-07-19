@@ -7,9 +7,19 @@ import { Link } from 'react-router-dom';
 import { Route } from "routes";
 import routes from "../consts/routes";
 import PlantCard from "../containers/Card/PlantCard"
+import useAuth from "../hooks/UseAuth";
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+    const [data, setData] = useState(null);
+    const { authState } = useAuth();
+    
+    const navigate = useNavigate;
+    
     return(
+    
         <>
             <Navbar/>
             <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
