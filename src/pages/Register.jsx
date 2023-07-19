@@ -4,8 +4,8 @@ import TextError from "../components/TextError/TextError";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-//import { useEffect } from "react";
-
+import { createUser } from "../api/services/user";
+import { Link } from "react-router-dom";
 
 function Register(params) {
 
@@ -16,7 +16,7 @@ function Register(params) {
         lastName:'',
         email:'',
         password:'',
-        productKey:'',
+        code:'',
     }
 
     const validationSchema = Yup.object({
@@ -29,12 +29,22 @@ function Register(params) {
             .required('Campo vacío'),
         password: Yup.string()
             .required('Campo vacío'),
-        productKey: Yup.string()
+        code: Yup.string()
             .required('Campo vacío'),
     });
 
     async function handleSubmit(values) {
-        //Por añadir
+        console.debug("hola");
+        const response = await createUser(values.name, values.lastname, values.email, values.password, values.code);
+        console.log(response);
+        if (response.status == 201){
+            alert('Usuario creado');
+            navigate('/login');
+            return;
+        }
+
+        alert(response.data.message);
+        return;
     }
 
     return(
@@ -105,19 +115,29 @@ function Register(params) {
                                 </div>
 
                                 <div className='flex flex-col py-2'>
-                                    <label>Key of Product/Clave de Producto</label>
-                                    <Input type='password' name='productKey' placeholder='Clave de producto'
-                                    value={values.productKey}
+                                    <label>Product Key/Código de Producto</label>
+                                    <Input type='password' name='code' placeholder='Código de producto'
+                                    value={values.code}
                                     handleChange={handleChange}
                                     handleBlur={handleBlur} />
-                                    {errors.productKey && touched.productKey &&
-                                        <TextError>{errors.productKey}</TextError>
+                                    {errors.code && touched.code &&
+                                        <TextError>{errors.code}</TextError>
                                     }
                                 </div>
 
                                 <div className='flex flex-col py-2'>
-                                    <Button>Crear cuenta</Button>
-                                </div>            
+                                    <Button type='submit'>Crear cuenta</Button>
+                                </div>
+
+                                <div className='flex flex-row justify-center items-center py-1'>
+                                    <p>¿Ya tienes una cuenta?</p>
+                                    <Link
+                                    to="/login"
+                                    className="text-black hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">
+                                        Inicia sesión
+                                    </Link>
+                                </div>
+
                             </form>
                         </div>
 
