@@ -43,6 +43,7 @@ const INITIAL_STATE = {
             type: 'SET_ACCESS_TOKEN',
             payload: accessToken,
         });
+        console.log("setAccessToken " + accessToken);
         localStorage.setItem('accessToken', accessToken);
     }; 
     
