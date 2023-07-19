@@ -8,7 +8,7 @@ function Fishes() {
     const [fishData, setFishData] = useState([]);
     const fishInfo = async () => {
         try {
-            const response = await axiosAPIInstance.get("/api/fish", {
+            const response = await axiosAPIInstance.get("/fish", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },

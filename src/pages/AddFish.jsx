@@ -31,7 +31,7 @@ function AddFish() {
             formData.append('spices', fishData.spices);
             formData.append('imageUrl', fishData.imageUrl);
 
-        await axiosAPIInstance.post('/api/fish', formData, {
+        await axiosAPIInstance.post('/fish', formData, {
             headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
             'Content-Type': 'application/json',

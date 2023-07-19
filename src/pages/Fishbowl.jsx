@@ -12,7 +12,7 @@ function Fishbowl(params) {
     const [phSensorData, setphSensorData] = useState([]);
     const phAverage = async () => {
         try {
-            const response = await axiosAPIInstance.get("/api/phSensor/average", {
+            const response = await axiosAPIInstance.get("/phSensor/average", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },

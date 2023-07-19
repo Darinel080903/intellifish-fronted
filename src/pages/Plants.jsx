@@ -8,7 +8,7 @@ function Plants(params) {
     const [PlantData, setPlantData] = useState([]);
     const plantInfo = async () => {
         try {
-            const response = await axiosAPIInstance.get("/api/plant", {
+            const response = await axiosAPIInstance.get("/plant", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 },

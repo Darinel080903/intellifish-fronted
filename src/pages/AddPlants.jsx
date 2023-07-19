@@ -29,7 +29,7 @@ function AddPlants() {
             formData.append('species', PlanData.species);
             formData.append('imageUrl', PlanData.imageUrl);
 
-        await axiosAPIInstance.post('/api/plant', formData, {
+        await axiosAPIInstance.post('/plant', formData, {
             headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
             'Content-Type': 'application/json',
