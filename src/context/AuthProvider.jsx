@@ -15,7 +15,7 @@ const INITIAL_STATE = {
 
     const AuthProvider = ({ children }) => {
         const init = (initialState) => {
-            const accessToken = localStorage.getItem("accessToken");
+            const accessToken = localStorage.getItem('accessToken');
 
             if (accessToken===null) {
                 return initialState;
@@ -40,10 +40,10 @@ const INITIAL_STATE = {
 
     const setAccessToken = (accessToken) => {
         dispatch({
-            type: "SET_ACCESS_TOKEN",
+            type: 'SET_ACCESS_TOKEN',
             payload: accessToken,
         });
-        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem('accessToken', accessToken);
     }; 
     
     const deleteToken = () => {
