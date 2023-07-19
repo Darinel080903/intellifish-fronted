@@ -37,9 +37,9 @@ function Login() {
 
     async function handleSubmit(values) {
         const response = await signIn(values.email, values.password);
-        console.log(response);
+        console.log(response.data.data);
 
-        if (response.status === 200){
+        if (response.status === 201){
             setAccessToken(response.data.data.token);
             alert('Inicio de sesión exitoso');
             navigate('/');
@@ -95,7 +95,7 @@ function Login() {
                             </div>
 
                             <div className='flex flex-col py-2'>
-                                <Button>Login</Button>
+                                <Button type='submit' width='w-full'>Login</Button>
                             </div>
 
                             <div className='flex flex-row justify-center items-center py-1'>

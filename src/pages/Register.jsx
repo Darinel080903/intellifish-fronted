@@ -34,9 +34,8 @@ function Register(params) {
     });
 
     async function handleSubmit(values) {
-        console.debug("hola");
         const response = await createUser(values.name, values.lastname, values.email, values.password, values.code);
-        console.log(response);
+        console.log(response.status);
         if (response.status == 201){
             alert('Usuario creado');
             navigate('/login');
