@@ -8,7 +8,7 @@ export async function createUser(
     code
 ) {
     try {
-        const response = await axiosAPIInstance.post('/api/user', {
+        const response = await axiosAPIInstance.post('/user', {
             name,
             lastname,
             email,
