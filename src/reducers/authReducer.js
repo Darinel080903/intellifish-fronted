@@ -4,11 +4,12 @@ const authReducer = (state, action) => {
     switch (action.type) {
         case 'SET_ACCESS_TOKEN':
         const {
-            sub: email
+            sub: email, password,
         } = decodeJWT(action.payload);
 
         const user = {
         email,
+        password,
         };
 
         return {
