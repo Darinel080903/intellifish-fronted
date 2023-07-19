@@ -5,18 +5,20 @@ import TextError from '../components/TextError/TextError';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-//import { useEffect } from 'react';
-
+import { useEffect } from 'react';
+import { signIn } from '../api/services/auth';
+import useAuth from '../hooks/UseAuth';
+import { Link } from 'react-router-dom';
 
 
 function Login() {
-    //const { setAccessToken, authState } = useAuth();
+    const { setAccessToken, authState } = useAuth();
 
-    /*useEffect(() => {
+    useEffect(() => {
         if (authState.accessToken) {
             navigate('/');
         }
-    }, []);*/
+    }, []);
     
     const navigate = useNavigate();
 
@@ -34,17 +36,17 @@ function Login() {
     });
 
     async function handleSubmit(values) {
-        /*const response = await signIn(values.email, values.password);
+        const response = await signIn(values.email, values.password);
         console.log(response);
 
         if (response.status === 200){
-            //setAccessToken(response.data.token);
+            setAccessToken(response.data.data.token);
             alert('Inicio de sesión exitoso');
             navigate('/');
             return;
         }
 
-        alert('Usuario o contraseña incorrectos');*/
+        alert('Usuario o contraseña incorrectos');
     }
 
     return (
@@ -96,8 +98,13 @@ function Login() {
                                 <Button>Login</Button>
                             </div>
 
-                            <div className='flex flex-col py-2'>
-                                <p>¿Olvidaste tu contraseña?</p>
+                            <div className='flex flex-row justify-center items-center py-1'>
+                                <p>¿No tienes cuenta?</p>
+                                <Link
+                                to="/register"
+                                className="text-black hover:text-cyan-400 block px-3 py-2 rounded-md text-base font-medium">
+                                    Crea una nueva
+                                </Link>
                             </div>
 
                         </form>
