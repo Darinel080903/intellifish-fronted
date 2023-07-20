@@ -2,6 +2,9 @@ import Navbar from "../containers/Navbar/Navbar";
 import PlantCard from "../containers/Card/PlantCard";
 import { axiosAPIInstance } from "../api/axios";
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Route } from "routes";
+import routes from "../consts/routes";
 
 
 function Plants(params) {
@@ -38,12 +41,14 @@ function Plants(params) {
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 justify-items-center">
                         {PlantData.map((plants, index) => (
-                            <PlantCard
-                                key={index}
-                                title={plants.species}
-                                content={plants.spices}
-                                imageUrl={plants.imageUrl}
-                            />
+                            <Link to={routes.fishbowl}>
+                                <PlantCard
+                                    key={index}
+                                    title={plants.species}
+                                    content={plants.spices}
+                                    imageUrl={plants.imageUrl}
+                                />
+                            </Link>
                         ))}
                     </div>
                 </div>

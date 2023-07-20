@@ -2,6 +2,9 @@ import Navbar from "../containers/Navbar/Navbar";
 import Card from "../containers/Card/Card";
 import { axiosAPIInstance } from "../api/axios";
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Route } from "routes";
+import routes from "../consts/routes";
 
 function Fishes() {
     
@@ -39,12 +42,14 @@ function Fishes() {
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 justify-items-center">
                         {fishData.map((fish, index) => (
-                            <Card
-                                key={index}
-                                title={fish.name}
-                                content={fish.spices}
-                                imageUrl={fish.imageUrl}
-                            />
+                            <Link to={routes.fishbowl}>
+                                <Card
+                                    key={index}
+                                    title={fish.name}
+                                    content={fish.spices}
+                                    imageUrl={fish.imageUrl}
+                                />
+                            </Link>
                         ))}
                     </div>
                 </div>
