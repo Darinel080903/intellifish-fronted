@@ -141,6 +141,13 @@ const Navbar = () => {
             >
               Estadisticas
             </Link>
+            <Link
+                to="/login"
+                className="text-black hover:bg-red-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                onClick={logout}
+              >
+                Cerrar sesión
+              </Link>
           </div>
         </div>
       )}
