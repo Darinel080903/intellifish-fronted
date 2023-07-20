@@ -37,7 +37,7 @@ function AddPlants() {
         });
 
         setIsSuccess(true);
-        setplantData({ species: '', imageUrl: '' });
+        setPlantData({ species: '', imageUrl: '' });
         } catch (error) {
             setIsError(true);
             console.error('Error al enviar la solicitud POST:', error);
@@ -52,15 +52,15 @@ function AddPlants() {
                 </div>
 
                 <div className='flex flex-col justify-center'>
-                    <form className='max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg'>
+                    <form className='max-w-[400px] w-full mx-auto p-8 px-8 rounded-lg' onSubmit={handleSubmit}>
                         <h2 className='text-4xl font-bold text-center m-4 -p4'>Agregar Plantas</h2>
 
                         <div className='flex flex-col py-2'>
                             <label>Especie de la planta</label>
                             <Input
                                 type='text'
-                                name="name"
-                                value={PlanData.name}
+                                name="species"
+                                value={PlanData.species}
                                 onChange={handleChange}
                                 required
                             />

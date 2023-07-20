@@ -7,7 +7,6 @@ import { axiosAPIInstance } from "../api/axios";
 
 function AddFish() {
     const [fishData, setFishData] = useState({
-        name: '',
         spices: '',
         imageUrl: '',
     });
@@ -27,7 +26,6 @@ function AddFish() {
         event.preventDefault();
         try {
             const formData = new FormData();
-            formData.append('name', fishData.name);
             formData.append('spices', fishData.spices);
             formData.append('imageUrl', fishData.imageUrl);
 
@@ -37,9 +35,8 @@ function AddFish() {
             'Content-Type': 'application/json',
             },
         });
-
         setIsSuccess(true);
-        setFishData({ name: '', spices: '', imageUrl: '' });
+        setFishData({ spices: '', imageUrl: '' });
         } catch (error) {
             setIsError(true);
             console.error('Error al enviar la solicitud POST:', error);

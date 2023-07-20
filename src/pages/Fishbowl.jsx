@@ -9,29 +9,31 @@ import { axiosAPIInstance } from "../api/axios";
 import React, { useEffect, useState } from 'react';
 
 function Fishbowl(params) {
-    const [phSensorData, setphSensorData] = useState([]);
-    const phAverage = async () => {
+    const [TemperatureSensorData, setTemperatureSensorData] = useState([]);
+
+    const waterTemperatureAverage = async () => {
         try {
-            const response = await axiosAPIInstance.get("/phSensor/average", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
+            const response = await axiosAPIInstance.get("/watertemperaturesensor/average", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                'Content-Type': 'multipart/form-data',
+            },
             });
-            return response.data.data || [];;
+            return response.data.data || [];
         } catch (error) {
-            console.error("Error fetching ph data:", error);
+            console.error("Error fetching temperature data:", error);
             return [];
         }
-    }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
-            const data = await phAverage();
-            console.log("ph data from API:", data);
-            console.log(data)
-            if (Array.isArray(data)) { 
-                setphSensorData(data);
-            } else {
-                console.warn("ph data is not an array:", data);
+            try {
+                const data = await waterTemperatureAverage();
+                console.log("temperature data from API:", data);
+                setTemperatureSensorData(data); 
+            } catch (error) {
+                console.error("Error fetching temperature data:", error);
             }
         };
         fetchData();
@@ -48,14 +50,16 @@ function Fishbowl(params) {
                             text='10°C'
                         >
                         </SecondaryCard>
-                        {phSensorData.map((ph, index) => (
+                        
+                        {TemperatureSensorData.map((data) => (
                             <SecondaryCard
-                                key={index}
-                                title='Ph del agua'
-                                content={Gota}
-                                text={ph.data}
+                                key={data.id}
+                                title='Temperatura del Agua'
+                                image={Gota}
+                                text={data.average}
                             />
                         ))}
+                    
                         <SecondaryCard
                             title='Flujo del Agua'
                             image={Flujo}
