@@ -1,6 +1,6 @@
 import Navbar from "../containers/Navbar/Navbar";
 import LineChart from "../components/LineChart/LineChart"
-import BarChart from "../components/BarChart/BarChart";
+import BarChartPhSensorMeanDeviation from "../components/BarChart/BarChartPhSensorMeanDeviation";
 import Card from "../containers/Card/Card"
 import Button from "../components/Button/Button";
 import { Link } from 'react-router-dom';
@@ -27,7 +27,7 @@ function Home() {
                     <div className="container mx-auto px-4 py-8 ">
                             <div className="bg-white p-8 rounded-lg shadow-md h-[454px]">
                                 <h2 className="text-2xl font-bold mb-4 text-center">Estadisticas</h2>
-                                <BarChart/>
+                                <BarChartPhSensorMeanDeviation/>
                             </div> 
                             <div className="bg-white p-8 rounded-lg shadow-md mt-[6%] h-[454px]">
                                 <h2 className="text-2xl font-bold  text-center">Estadisticas</h2>

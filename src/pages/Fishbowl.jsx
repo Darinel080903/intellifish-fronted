@@ -17,6 +17,42 @@ function Fishbowl(params) {
     const [waterFlowSensorMeanDeviationData, setwaterFlowSensorMeanDeviationData] = useState(null);
     const [waterFlowSensorVarianceData, setwaterFlowSensorVarianceData] = useState(null);
 
+    const fetchDataAndUpdateState = async (apiEndpoint, setData) => {
+        try {
+            const response = await axiosAPIInstance.get(apiEndpoint, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        if (Array.isArray(response.data) && response.data.length > 0) {
+        setData(response.data[response.data.length - 1]); 
+        } else {
+            setData(null);
+        }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setData(null); 
+        }
+    };
+
+    useEffect(() => {
+        const fetchAllData = async () => {
+            await fetchDataAndUpdateState('/watertemperaturesensor/average', setTemperatureSensorData);
+            await fetchDataAndUpdateState('/watertemperaturesensor/meanDeviation', setTemperatureSensorMeanDeviationData);
+            await fetchDataAndUpdateState('/watertemperaturesensor/variance', setTemperatureSensorVarianceData);
+            await fetchDataAndUpdateState('/phSensor/average', setphSensorData);
+            await fetchDataAndUpdateState('/phSensor/meanDeviation', setphSensorSensorMeanDeviationData);
+            await fetchDataAndUpdateState('/phSensor/variance', setphSensorVarianceData);
+            await fetchDataAndUpdateState('/waterflowsensor/average', setwaterFlowSensorData);
+            await fetchDataAndUpdateState('/waterflowsensor/meanDeviation', setwaterFlowSensorMeanDeviationData);
+            await fetchDataAndUpdateState('/waterflowsensor/variance', setwaterFlowSensorVarianceData);
+        };
+        fetchAllData();
+        const intervalId = setInterval(fetchAllData, 60000);
+        return () => clearInterval(intervalId);
+    }, []);
+
     const waterTemperatureAverage = async () => {
         try {
             const response = await axiosAPIInstance.get("/watertemperaturesensor/average", {
@@ -294,13 +330,13 @@ function Fishbowl(params) {
                         <SecondaryCard
                             title='Desviacion Media'
                             image={TemperaturaImage}
-                            text={TemperatureSensorMeanDeviationData !== null ? TemperatureSensorMeanDeviationData.toFixed(4) : "N/A"}
+                            text={TemperatureSensorMeanDeviationData}
                         />
 
                         <SecondaryCard
                             title='Varianza'
                             image={TemperaturaImage}
-                            text={TemperatureSensorVarianceData !== null ? TemperatureSensorVarianceData.toFixed(4) : "N/A"}
+                            text={TemperatureSensorVarianceData}
                         />
                     </div>
                     <p className="text-2xl font-bold tracking-tight text-gray-900 text-center p-4">Sensor de Ph</p>
@@ -309,19 +345,20 @@ function Fishbowl(params) {
                         <SecondaryCard
                             title='Ph del Agua'
                             image={Gota}
-                            text={Math.round(`${phSensorData}`)}
+                            text={phSensorData}
                         />
+                        
 
                         <SecondaryCard
                             title='Desviacion Media'
                             image={Gota}
-                            text={phSensorSensorMeanDeviationData !== null ? phSensorSensorMeanDeviationData.toFixed(4) : "N/A"}
+                            text={phSensorSensorMeanDeviationData}
                         />
 
                         <SecondaryCard
                             title='Varianza'
                             image={Gota}
-                            text={phSensorVarianceData !== null ? phSensorVarianceData.toFixed(4) : "N/A"}
+                            text={phSensorVarianceData}
                         />
                     </div>
                     <p className="text-2xl font-bold tracking-tight text-gray-900 text-center p-4">Sensor de Flujo de Agua</p>
@@ -335,13 +372,13 @@ function Fishbowl(params) {
                         <SecondaryCard
                             title='Desviacion Media'
                             image={Flujo}
-                            text={waterFlowSensorMeanDeviationData !== null ? waterFlowSensorMeanDeviationData.toFixed(4) : "N/A"}
+                            text={waterFlowSensorMeanDeviationData}
                         />
                         
                         <SecondaryCard
                             title='Varianza'
                             image={Flujo}
-                            text={waterFlowSensorVarianceData !== null ? waterFlowSensorVarianceData.toFixed(4) : "N/A"}
+                            text={waterFlowSensorVarianceData}
                         />
 
                     </div>

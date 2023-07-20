@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { axiosAPIInstance } from '../../api/axios';
 
-const LineChart = () => {
-  const [chartData, setChartData] = useState(null);
+const LineChartWaterFlow = () => {
+    const [chartData, setChartData] = useState(null);
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
 
-    const waterSensorTemperature = async () => {
+    const WaterFlow = async () => {
         try {
-            const response = await axiosAPIInstance.get("/watertemperaturesensor/average", {
+            const response = await axiosAPIInstance.get("/waterflowsensor/average", {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 'Content-Type': 'multipart/form-data',
@@ -25,7 +25,7 @@ const LineChart = () => {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const data = await waterSensorTemperature();
+            const data = await WaterFlow();
             setChartData(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -45,7 +45,7 @@ const LineChart = () => {
                 chartInstance.current = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: chartData.map((_, index) => (index + 1).toString()), // Usamos los índices como etiquetas
+                        labels: chartData.map((_, index) => (index + 1).toString()),
                         datasets: [
                             {
                                 label: 'Ocultar',
@@ -70,4 +70,4 @@ const LineChart = () => {
     return <canvas ref={chartRef} />;
 };
 
-export default LineChart;
+export default LineChartWaterFlow;

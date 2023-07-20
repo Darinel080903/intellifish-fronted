@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { axiosAPIInstance } from '../../api/axios';
 
-const LineChart = () => {
-  const [chartData, setChartData] = useState(null);
+const BarChartPhSensorMeanDeviation = () => {
+    const [chartData, setChartData] = useState(null);
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
 
-    const waterSensorTemperature = async () => {
+    const phSensorMeanDeviation = async () => {
         try {
-            const response = await axiosAPIInstance.get("/watertemperaturesensor/average", {
+            const response = await axiosAPIInstance.get("/phSensor/meanDeviation", {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                 'Content-Type': 'multipart/form-data',
@@ -25,7 +25,7 @@ const LineChart = () => {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const data = await waterSensorTemperature();
+            const data = await phSensorMeanDeviation();
             setChartData(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -43,12 +43,12 @@ const LineChart = () => {
             } else {
                 const ctx = chartRef.current.getContext('2d');
                 chartInstance.current = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: chartData.map((_, index) => (index + 1).toString()), // Usamos los índices como etiquetas
                         datasets: [
                             {
-                                label: 'Ocultar',
+                                label: 'Desviacion Estandar del Ph',
                                 data: chartData,
                                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
@@ -67,7 +67,8 @@ const LineChart = () => {
             }
         }
     }, [chartData]);
-    return <canvas ref={chartRef} />;
+
+return <canvas ref={chartRef} />;
 };
 
-export default LineChart;
+export default BarChartPhSensorMeanDeviation;
